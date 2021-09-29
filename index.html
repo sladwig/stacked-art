@@ -3,107 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Stacked Art</title>
-  <style>
-      .stacked-art,
-      .stacked-art .art-pieces {
-        display: grid;
-        width: 100%;
-        cursor: pointer;
-    }
-    .stacked-art .art-pieces > *, .stacked-art > * {
-        grid-row: 1;
-        grid-column: 1;
-        color: black;
-        font-size: 32px;
-        font-weight: fat;
-        opacity: 0.5;
-        top: 0;
-        width:100%;
-        height: 100%;
-        object-fit: cover;
-        mix-blend-mode: hue; /* here is room for experimentation */
-    }
-    .stacked-art .overlays {
-        opacity: 1;
-        mix-blend-mode: normal;
-    }
-    /* hard coded height, but changeable to your needs - let me know */
-    .stacked-art,
-    .stacked-art .art-pieces ,
-    .stacked-art .art-pieces > *,
-    .stacked-art > * {
-        height: 460px;
-    }
-
-    .stacked-art .art-pieces > *:first, .stacked-art > *:first {
-        opacity: 1;
-    }
-    .centered {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 1;
-        mix-blend-mode: normal;
-    }
-    .top {
-        align-items: flex-start;
-    }
-    .bottom {
-        align-items: flex-end;
-    }
-    .left {
-        justify-content: flex-start;
-    }
-    .right {
-        justify-content: flex-end;
-    }
-    .stacked-art .stack-overlay {
-        width: 100%;
-        height: 100%;
-    }
-</style>
+  <script src="stacked-art.js"></script>
 </head>
 
 <body>
-    <div class="stacked-art">
-        <!-- Here should go all the art, change how the blend looks with mix-blend-mode (the first) -->
-        <div class="art-pieces">
-            <video src="cutted.mov" ></video>
-            <img src="https://placebear.com/200/300" />
-            <video src="thisvideodoesnotexist.mov" ></video>
-            <img src="https://placebear.com/g/200/300" />
-            <audio src="steps.wav" ></audio>
-        </div>
-        <!-- Here should go all those overlays which are on top -->
-        <div class="art-pieces overlays">
-            <div class="centered">center</div>
-            <div class="centered top">top</div>
-            <div class="centered bottom">bottom</div>
-            <div class="centered left">left</div>
-            <div class="centered right">right</div>
-        </div>
-        <!-- this one handles the clicks  -->
-        <div class="stack-overlay"></div>
-    </div>
 
-  <script type="text/javascript">
-      setTimeout(() => {
-        const stacks = document.querySelectorAll('.stacked-art')
-          stacks.forEach((stack) => {
-              const clickOverlay = stack.querySelector('.stack-overlay')
-              clickOverlay.addEventListener('click', () => { 
-                    stack.querySelectorAll('audio, video').forEach((media) => {
-                        if (media.paused) {
-                            media.play().catch(() => console.log('could not play media, check if src is correct'))
-                        } else {
-                            media.pause()
-                        }
-                    })
-                })
-                const height = document.querySelector('.art-pieces').getBoundingClientRect().height
-                stack.style.height = `${height}px`
-            })
-        }, 0)
-  </script>
+  <div>
+    <div style="width: 80vw; height: 60vh; margin: auto;"> 
+      <stacked-art title="click to play">
+        <img src="https://placebear.com/200/300" />
+        <video src="cutted.mov"></video>
+        <img src="https://placekitten.com/900/300" />
+        <audio src="steps.wav"></audio>
+      </stacked-art>
+    </div>
+  </div>
 </body>
 </html>
