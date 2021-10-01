@@ -30,11 +30,35 @@ class StackedArt extends HTMLElement {
   constructor() {
     super();
     this.playing = false;
+    this.blendMode = "stretch";
+    this.possibleBlendModes = ["color"
+      ,"color-burn"
+      ,"color-dodge"
+      ,"darken"
+      ,"difference"
+      ,"exclusion"
+      ,"hard-light"
+      ,"hue"
+      ,"lighten"
+      ,"luminosity"
+      ,"multiply"
+      ,"normal"
+      ,"overlay"
+      ,"saturation"
+      ,"screen"
+      ,"soft-light"]
+  }
+  setBlendMode(newBlendMode) {
+    if (this.possibleBlendModes.includes(newBlendMode)) {
+      this.blendMode = newBlendMode
+    }
   }
 
   connectedCallback() {
     this.attachShadow({mode: 'open'})
         .innerHTML = this.render();
+
+    this.setBlendMode(this.getAttribute('blend-mode')) 
 
     setTimeout(() => {
       this.$overlay = this.shadowRoot.querySelector('.overlay')
@@ -53,7 +77,7 @@ class StackedArt extends HTMLElement {
         art.style.left = "0"
         art.style.objectFit = "stretch"
         if (i) {
-          art.style.mixBlendMode = "screen"
+          art.style.mixBlendMode = this.blendMode;
         }
       })
     }, 0);
