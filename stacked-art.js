@@ -91,6 +91,7 @@ class StackedArt extends HTMLElement {
       } else {
         media.play().catch(() => {
           console.log('error with playback')
+          media.style.display = "none";
         })
       }
     })
@@ -102,7 +103,7 @@ class StackedArt extends HTMLElement {
     return `<style>${stackedArtCssStyle}</style>
   <div class="stacked-art">
     <div class="art"><slot></slot></div>
-    <div class="overlay">center</div>
+    <div class="overlay"></div>
   </div>`
   }
 }
