@@ -30,7 +30,7 @@ class StackedArt extends HTMLElement {
   constructor() {
     super();
     this.playing = false;
-    this.blendMode = "stretch";
+    this.blendMode = "screen";
     this.possibleBlendModes = ["color"
       ,"color-burn"
       ,"color-dodge"
@@ -68,7 +68,6 @@ class StackedArt extends HTMLElement {
       this.$overlay.textContent = this.getAttribute('title')
 
       this.$art.forEach((art, i) => {
-        console.log(art)
         art.style.width = "100%"
         art.style.height = "100%"
         art.style.objectFit = "cover"
