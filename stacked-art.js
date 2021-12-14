@@ -4,7 +4,7 @@ const stackedArtCssStyle = `
   display: grid;
   background: black;
   cursor: pointer;
-  overflow:hidden;
+  overflow: hidden;
   width: 100%;
   height: 100%;
 }
@@ -31,7 +31,8 @@ class StackedArt extends HTMLElement {
     super();
     this.playing = false;
     this.blendMode = "screen";
-    this.possibleBlendModes = ["color"
+    this.possibleBlendModes = [
+       "color"
       ,"color-burn"
       ,"color-dodge"
       ,"darken"
@@ -46,7 +47,8 @@ class StackedArt extends HTMLElement {
       ,"overlay"
       ,"saturation"
       ,"screen"
-      ,"soft-light"]
+      ,"soft-light"
+    ]
   }
   setBlendMode(newBlendMode) {
     if (this.possibleBlendModes.includes(newBlendMode)) {
@@ -55,10 +57,10 @@ class StackedArt extends HTMLElement {
   }
 
   connectedCallback() {
-    this.attachShadow({mode: 'open'})
-        .innerHTML = this.render();
+    this.attachShadow({mode: 'open'});
+    this.shadowRoot.innerHTML = this.render();
 
-    this.setBlendMode(this.getAttribute('blend-mode')) 
+    this.setBlendMode(this.getAttribute('blend-mode'))
 
     setTimeout(() => {
       this.$overlay = this.shadowRoot.querySelector('.overlay')
