@@ -15,14 +15,14 @@ const stackedArtCssStyle = `
   height: 100%;
 }
 .overlay {
-  font-size: 2.2222222222rem;
+  font-size: 2rem;
   color: black;
   font-weight: normal;
   letter-spacing: 16px;
   display: grid;
   place-items: center;
   transition: opacity 300ms ease;
-  text-shadow: 1px 1px 6px white;
+  text-shadow: 1px 1px 12px white;
   font-family: "Square Slab 711 W03 Light","Rockwell","Georgia","Times New Roman","Times",serif;
 }`
 
