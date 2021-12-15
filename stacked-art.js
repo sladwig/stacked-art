@@ -2,7 +2,6 @@ const stackedArtCssStyle = `
 .stacked-art {
   position: relative;
   display: grid;
-  background: black;
   cursor: pointer;
   overflow: hidden;
   width: 100%;
@@ -16,14 +15,14 @@ const stackedArtCssStyle = `
   height: 100%;
 }
 .overlay {
-  font-size: 64px;
-  color: white;
-  font-weight: 900;
+  font-size: 2.2222222222rem;
+  color: black;
+  font-weight: normal;
   letter-spacing: 16px;
   display: grid;
   place-items: center;
   transition: opacity 300ms ease;
-  text-shadow: 1px 1px 12px black;
+  font-family: "Square Slab 711 W03 Light","Rockwell","Georgia","Times New Roman","Times",serif;
 }`
 
 class StackedArt extends HTMLElement {
@@ -70,6 +69,9 @@ class StackedArt extends HTMLElement {
       this.$overlay.textContent = this.getAttribute('title')
 
       this.$art.forEach((art, i) => {
+        if (!art.getAttribute('src')) {
+          art.style.display = "none"
+        }
         art.style.width = "100%"
         art.style.height = "100%"
         art.style.objectFit = "cover"
@@ -92,8 +94,9 @@ class StackedArt extends HTMLElement {
         media.pause()
       } else {
         media.play().catch(() => {
-          console.log('error with playback')
+          console.log('error with playback', media)
           media.style.display = "none";
+          media.remove()
         })
       }
     })
